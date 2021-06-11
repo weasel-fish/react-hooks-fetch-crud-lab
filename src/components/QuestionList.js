@@ -11,18 +11,17 @@ function QuestionList() {
   }, [])
 
   function handleDelete(id) {
+    fetch(`http://localhost:4000/questions/${id}`, {
+      method: 'DELETE'
+    })
+    .then(() => {
     const idx = questions.findIndex(q => q.id === id)
 
     const newQs = [...questions]
     newQs.splice(idx, 1)
 
     setQuestions(newQs)
-    
-    fetch(`http://localhost:4000/questions/${id}`, {
-      method: 'DELETE'
     })
-
-    
   }
 
   function handleUpdate (id, correct) {
